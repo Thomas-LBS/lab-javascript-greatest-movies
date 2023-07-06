@@ -2,30 +2,42 @@
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(potatoArray) {
-    return potatoArray.map(apple => {
-        return apple.director
-    })
+    let filteredpotatoArray = potatoArray.map(apple => apple.director)
+    return filteredpotatoArray
     }
 
-
-
-
-
+    /*  if (apple.director.indexOf(word) === apple.director.lastIndexOf(word)) {
+      return apple.director;*/
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(potatoArray) {
-    let counter = 0
-    return potatoArray.filter(directorsName => { 
-        potatoArray.director === "Steven Spielberg"
-        return counter ++  })  
+    let filteredpotatoArray = potatoArray.filter(apple => apple.director === "Steven Spielberg" && apple.genre.includes("Drama"))
+    return filteredpotatoArray.length   
+   }
            
+ 
+// Iteration 3: All scores average - Get the average of all scores with 2 decimals
+function scoresAverage(potatoArray) {
+    if (!potatoArray.length) {return 0}
+
+      let scores = potatoArray.reduce((sum, apple) => {
+        if(apple.score === undefined) {
+          return sum}
+        else {return apple.score + sum}
+    }, 0)
+
+      let averageScore = scores / potatoArray.length
+
+      return Math.round((averageScore) * 100) / 100;
  }
 
-// Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage(moviesArray) { }
-
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) { }
+function dramaMoviesScore(potatoArray) {
+    let filteredDramaScores = potatoArray.filter((apple) => {
+        return apple.genre.includes("Drama");
+      })
+      return scoresAverage(filteredDramaScores)
+ }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) { }
