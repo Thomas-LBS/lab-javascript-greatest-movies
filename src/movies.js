@@ -21,29 +21,46 @@ function scoresAverage(potatoArray) {
     if (!potatoArray.length) {return 0}
 
       let scores = potatoArray.reduce((sum, apple) => {
-        if(apple.score === undefined) {
+        if(!apple.score) {
           return sum}
         else {return apple.score + sum}
     }, 0)
 
       let averageScore = scores / potatoArray.length
 
-      return Math.round((averageScore) * 100) / 100;
+      return Math.round((averageScore) * 100) / 100
  }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(potatoArray) {
-    let filteredDramaScores = potatoArray.filter((apple) => {
-        return apple.genre.includes("Drama");
-      })
+    let filteredDramaScores = potatoArray.filter(apple => apple.genre.includes("Drama"))
       return scoresAverage(filteredDramaScores)
  }
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) { }
+function orderByYear(moviesArray) {
+    const arrayFilteredByYear = moviesArray.map(movie => movie)
+
+    let filteredmoviesArray = arrayFilteredByYear.sort(
+        function (a, b) {
+            if (a.year > b.year) return 1 
+            if (a.year < b.year) return -1 
+            if (a.title[0] > b.title[0]) return 1
+            else return -1
+        })
+        return arrayFilteredByYear
+    }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) { }
+function orderAlphabetically(moviesArray) {
+    const titleArray = [];
+    for (let i = 0; i < moviesArray.length ; i++) {
+      titleArray.push(moviesArray[i].title); 
+    }
+    const sortedArray = titleArray.sort();
+    const reducedArray = sortedArray.slice(0, 20);
+    return reducedArray;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) { }
